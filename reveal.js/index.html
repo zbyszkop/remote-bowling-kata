@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				<section data-markdown>
+					<script type="text/template">
+						## What is TDD?
+						#### and what it isn't... <!-- .element: class="fragment" -->
+				</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## TDD is not Tests First!!
+						#### or at least it's not it's main function <!-- .element: class="fragment" -->
+					</script>
+				</section>
+				<section>
+						TDD is a code design process
+				</section>
+				<section>
+						TDD is a code documentation process
+				</section>
+				<section>
+						TDD is a development tool
+				</section>
+				<section>
+						TDD are the Tests You Can Trust <span class="fragment"> &trade;</span>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					## Three Laws of TDD
+				</section>
+				<section>
+					Thou shall not write production code without a failing test.
+				</section>
+				<section>
+					Thou shall not write more unit test than required to fail.
+				</section>
+				<section>
+					Thou shall not write more production code than required to pass a failing test.
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2><span style="color:red;">Red</span>-<span style="color:green;">Green</span>-<span style="color:orange;">Refactor</span>
+						<p>Loop</p></h2>
+				</section>
+				<section style="background-color:red">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	new Summarizer().sum(3, 4);
+}
+
+					</code></pre>
+				</section>
+				<section style="background-color:green">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	new Summarizer().sum(3, 4);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return 0;
+	}
+}
+
+					</code></pre>
+				</section>
+				<section style="background-color:red">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	int sum = new Summarizer().sum(3, 4);
+	assertThat(sum).isEqualTo(7);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return 0;
+	}
+}
+					</code></pre>
+				</section>
+				<section style="background-color:green">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	int sum = new Summarizer().sum(3, 4);
+	assertThat(sum).isEqualTo(7);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return 7;
+	}
+}
+
+					</code></pre>
+				</section>
+				<section style="background-color:red">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	int sum = new Summarizer().sum(3, 4);
+	assertThat(sum).isEqualTo(7);
+	int sum = new Summarizer().sum(0, 2);
+	assertThat(sum).isEqualTo(2);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return 7;
+	}
+}
+					</code></pre>
+				</section>
+				<section style="background-color:green">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	int sum = new Summarizer().sum(3, 4);
+	assertThat(sum).isEqualTo(7);
+	int sum = new Summarizer().sum(0, 2);
+	assertThat(sum).isEqualTo(2);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return a == 0 ? 2 : 7;
+	}
+}
+					</code></pre>
+				</section>
+				<section style="background-color:orange">
+<pre><code>//Test
+@Test
+public void shouldSummarizeNumbers() {
+	int sum = new Summarizer().sum(3, 4);
+	assertThat(sum).isEqualTo(7);
+	int sum = new Summarizer().sum(0, 2);
+	assertThat(sum).isEqualTo(2);
+}
+
+//Implementation
+public class Summarizer {
+	public int sum(int a, int b) {
+		return a + b;
+	}
+}
+					</code></pre>
+				</section>
+			</section>
+				<section>
+					<section>
+						 <h2>Let's Bowl!!</h2>
+						 <h4 class="fragment">but let's learn the rules first</h4>
+					</section>
+					<section>
+					 Each turn a player has max two throws, for all rounds except the last one
+				 </section>
+				 <section>
+					There are 10 rounds, called frames
+				 </section>
+				 <section>
+					 Game's score is a sum of all frames' scores
+				 </section>
+				 <section>
+					 During first throw player can knock down between 0 - 10 pins
+				 </section>
+				 <section>
+					 During second throw player can knockout between 0 and 10 minus number of pins knocked down in previous throw
+				 </section>
+				 <section>
+					Each frame's score is a sum of both throws
+				</section>
+				<section>
+					..unless all pins are knocked down
+				</section>
+				<section>
+				 If player knocks down 10 pins during first throw, score for the frame is equal to 10 + number of pins knocked down during next round
+				 <p class="fragment">This is called a Strike</p>
+			 </section>
+			 <section>
+			  If player knocks down remaining pins during second throw, score for the frame is equal to 10 + number of pins knocked down during next throw
+			  <p class="fragment">This is called a Spare</p>
+			 </section>
+			 <section>
+				Final round's score is a sum of both throws
+			 </section>
+			 <section>
+				 ..unless player scores a strike - player gets two additional throws and knocked down pins are counted towards frame's score
+			 </section>
+			 <section>
+			   ..or player scores a spare - player gets one additional throw and knocked down pins are counted towards frame's score
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				navigationMode: 'linear',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
