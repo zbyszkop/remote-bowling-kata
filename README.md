@@ -40,3 +40,4 @@ It describes how to set up the session, so I won't repeat the instructions here.
     (you can search for the option in the settings, so I won't provide you with a path here).
       * It again depends how much do you trust your participants, but "Allow Guest Command Control" is a nice option, that allow participants
     to run their test from Code Actions - quite useful for this kind of exercise.
+1. (Optional) For those craving some IntelliJ experience, here's plugin for vscode providing you with a subset of Intellij's shortcuts - [IntelliJ Idea Keybindings](https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings).
