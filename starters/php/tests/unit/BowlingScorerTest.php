@@ -76,6 +76,12 @@ final class BowlingScorerTest extends TestCase
         $this->assertScore(20);
     }
 
+    public function testShouldHavePerfectGame(): void
+    {
+        $this->roll(10,10,10,10,10,10,10,10,10,10,10,10);
+        $this->assertScore(300);
+    }
+
     private function roll(...$rolls): void
     {
         foreach ($rolls as $roll) {
