@@ -7,6 +7,12 @@ final class BowlingScorerTest extends TestCase
 
     private $bowlingScorer;
 
+    protected function setUp(): void
+    {
+        $this->bowlingScorer = $bowlingScorer = new BowlingScorer();
+        parent::setUp();
+    }
+
     public function testShouldBeAbleToScoreAndSeeScore(): void
     {
         $this->bowlingScorer->roll(0);
@@ -22,9 +28,23 @@ final class BowlingScorerTest extends TestCase
         $this->assertEquals(5, $this->bowlingScorer->score());
     }
 
-    protected function setUp(): void
+    public function testShouldHaveACompleteZeroGame(): void
     {
-        $this->bowlingScorer = $bowlingScorer = new BowlingScorer();
-        parent::setUp();
+        for ($i = 0; $i < 20; $i++) {
+            $this->bowlingScorer->roll(0);
+        }
+
+        $this->assertEquals(0, $this->bowlingScorer->score());
     }
+
+    public function testShouldAccountScoreForSpares(): void
+    {
+        $this->bowlingScorer->roll(5);
+        $this->bowlingScorer->roll(5);
+        $this->assertEquals(0, $this->bowlingScorer->score());
+
+    }
+
+
+
 }
