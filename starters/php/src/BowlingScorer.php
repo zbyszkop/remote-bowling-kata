@@ -8,4 +8,9 @@ class BowlingScorer
     {
 
     }
+
+    public function score(): int
+    {
+        return 0;
+    }
 }
