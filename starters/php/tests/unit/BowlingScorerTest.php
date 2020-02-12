@@ -5,24 +5,26 @@ use PHPUnit\Framework\TestCase;
 final class BowlingScorerTest extends TestCase
 {
 
+    private $bowlingScorer;
+
     public function testShouldBeAbleToScoreAndSeeScore(): void
     {
-        $bowlingScorer = new BowlingScorer();
+        $this->bowlingScorer->roll(0);
 
-        $bowlingScorer->roll(0);
-
-        $this->assertEquals(0, $bowlingScorer->score());
-
+        $this->assertEquals(0, $this->bowlingScorer->score());
     }
 
     public function testShouldBeAbleToRollAndSeeTotalScore(): void
     {
-        $bowlingScorer = new BowlingScorer();
+        $this->bowlingScorer->roll(2);
+        $this->bowlingScorer->roll(3);
 
-        $bowlingScorer->roll(2);
-        $bowlingScorer->roll(3);
+        $this->assertEquals(5, $this->bowlingScorer->score());
+    }
 
-        $this->assertEquals(5, $bowlingScorer->score());
-
+    protected function setUp(): void
+    {
+        $this->bowlingScorer = $bowlingScorer = new BowlingScorer();
+        parent::setUp();
     }
 }
