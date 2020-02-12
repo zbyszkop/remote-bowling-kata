@@ -82,6 +82,12 @@ final class BowlingScorerTest extends TestCase
         $this->assertScore(300);
     }
 
+    public function testShouldCorrectlyCountStrike(): void
+    {
+        $this->roll(10,2, 3, 5, 2);
+        $this->assertScore(27);
+    }
+
     private function roll(...$rolls): void
     {
         foreach ($rolls as $roll) {

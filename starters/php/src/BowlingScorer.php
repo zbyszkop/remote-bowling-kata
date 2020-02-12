@@ -36,18 +36,12 @@ class BowlingScorer
         return $this->score;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldAddStrikeScore(): bool
+    private function shouldAddStrikeScore(): bool
     {
         return $this->nextToLastRoll == 10;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldAddSpareScore(): bool
+    private function shouldAddSpareScore(): bool
     {
         return $this->nextToLastRoll + $this->lastRoll == 10;
     }
