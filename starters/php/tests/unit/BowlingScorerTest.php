@@ -42,6 +42,8 @@ final class BowlingScorerTest extends TestCase
         $this->bowlingScorer->roll(5);
         $this->bowlingScorer->roll(5);
         $this->assertEquals(0, $this->bowlingScorer->score());
+        $this->bowlingScorer->roll(2);
+        $this->assertEquals(12, $this->bowlingScorer->score()); //should account previous frame, but not yet the current one
 
     }
 
