@@ -12,6 +12,7 @@ class BowlingScorer
     {
         if ($this->shouldAddStrikeScore()) {
             $this->score += 10 + $this->lastRoll + $roll;
+            $this->nextToLastRoll = -1;
         } else if ($this->shouldAddSpareScore()) {
             $this->score += 10 + $roll;
             $this->nextToLastRoll = -1;
