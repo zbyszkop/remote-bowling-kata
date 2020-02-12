@@ -12,4 +12,14 @@ final class BowlingScorerTest extends TestCase
         $bowlingScorer->roll(0);
 
     }
+
+    public function testShouldBeAbleToScoreAndSeeScore(): void
+    {
+        $bowlingScorer = new BowlingScorer();
+
+        $bowlingScorer->roll(0);
+
+        $this->assertEquals(0, $bowlingScorer->score());
+
+    }
 }
