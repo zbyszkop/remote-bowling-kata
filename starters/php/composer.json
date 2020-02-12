@@ -1,0 +1,19 @@
+{
+    "name": "wikimedia/php",
+    "type": "library",
+    "description": "",
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "authors": [
+        {
+            "name": "Zbyszko Papierski",
+            "email": "zpapierski@wikimedia.org"
+        }
+    ]
+}
