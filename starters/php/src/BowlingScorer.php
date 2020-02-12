@@ -4,13 +4,15 @@
 class BowlingScorer
 {
 
-    public function roll(int $int)
-    {
+    private int $score = 0;
 
+    public function roll(int $roll)
+    {
+        $this->score += $roll;
     }
 
     public function score(): int
     {
-        return 0;
+        return $this->score;
     }
 }
