@@ -44,9 +44,34 @@ final class BowlingScorerTest extends TestCase
         $this->assertEquals(0, $this->bowlingScorer->score());
         $this->bowlingScorer->roll(2);
         $this->assertEquals(12, $this->bowlingScorer->score()); //should account previous frame, but not yet the current one
-
+        $this->bowlingScorer->roll(7);
+        $this->assertEquals(21, $this->bowlingScorer->score()); //should account previous and current frame
     }
 
+    public function testShouldAccountForTwoSparesInARow(): void
+    {
+        $this->bowlingScorer->roll(5);
+        $this->bowlingScorer->roll(5);
+        $this->assertEquals(0, $this->bowlingScorer->score());
+        $this->assertEquals(0, $this->bowlingScorer->score());
+        $this->bowlingScorer->roll(2);
+        $this->assertEquals(12, $this->bowlingScorer->score()); //add up spare frame score
+        $this->bowlingScorer->roll(8);
+        $this->assertEquals(12, $this->bowlingScorer->score()); //another spare frame, not account this one yet...
+        $this->bowlingScorer->roll(3);
+        $this->assertEquals(25, $this->bowlingScorer->score()); //add up a second spare frame score
+    }
 
+    public function testShouldHaveFullGameWithSpares(): void
+    {
+        $this->roll(5,5, 2,1, 3,5, 6,2, 0,2, 1,2, 0,0, 4,6, 3,2, 4,4);
+        $this->assertEquals(62, $this->bowlingScorer->score());
+    }
 
+    private function roll(...$rolls): void
+    {
+        foreach ($rolls as $roll) {
+            $this->bowlingScorer->roll($roll);
+        }
+    }
 }
