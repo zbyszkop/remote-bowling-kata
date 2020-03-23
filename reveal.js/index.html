@@ -1,4 +1,4 @@
-<!doctype html>
+Sum<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -34,7 +34,7 @@
 				<section data-markdown>
 					<script type="text/template">
 						## TDD is not Tests First!!
-						#### or at least it's not it's main function <!-- .element: class="fragment" -->
+						#### or at least it's not its main function <!-- .element: class="fragment" -->
 					</script>
 				</section>
 				<section>
@@ -58,7 +58,7 @@
 					Thou shall not write production code without a failing test.
 				</section>
 				<section>
-					Thou shall not write more unit test than required to fail.
+					Thou shall not write more unit tests than required to fail.
 				</section>
 				<section>
 					Thou shall not write more production code than required to pass a failing test.
@@ -72,8 +72,8 @@
 				<section style="background-color:red">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	new Summer().sum(3, 4);
 }
 
 					</code></pre>
@@ -81,12 +81,12 @@ public void shouldSummarizeNumbers() {
 				<section style="background-color:green">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	new Summer().sum(3, 4);
 }
 
 //Implementation
-public class Summarizer {
+public class Summer {
 	public int sum(int a, int b) {
 		return 0;
 	}
@@ -97,13 +97,13 @@ public class Summarizer {
 				<section style="background-color:red">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	int sum = new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	int sum = new Summer().sum(3, 4);
 	assertThat(sum).isEqualTo(7);
 }
 
 //Implementation
-public class Summarizer {
+public class Summer {
 	public int sum(int a, int b) {
 		return 0;
 	}
@@ -113,13 +113,13 @@ public class Summarizer {
 				<section style="background-color:green">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	int sum = new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	int sum = new Summer().sum(3, 4);
 	assertThat(sum).isEqualTo(7);
 }
 
 //Implementation
-public class Summarizer {
+public class Summer {
 	public int sum(int a, int b) {
 		return 7;
 	}
@@ -130,15 +130,15 @@ public class Summarizer {
 				<section style="background-color:red">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	int sum = new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	int sum = new Summer().sum(3, 4);
 	assertThat(sum).isEqualTo(7);
-	int sum = new Summarizer().sum(0, 2);
+	int sum = new Summer().sum(0, 2);
 	assertThat(sum).isEqualTo(2);
 }
 
 //Implementation
-public class Summarizer {
+public class Summer {
 	public int sum(int a, int b) {
 		return 7;
 	}
@@ -148,15 +148,15 @@ public class Summarizer {
 				<section style="background-color:green">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	int sum = new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	int sum = new Summer().sum(3, 4);
 	assertThat(sum).isEqualTo(7);
-	int sum = new Summarizer().sum(0, 2);
+	int sum = new Summer().sum(0, 2);
 	assertThat(sum).isEqualTo(2);
 }
 
 //Implementation
-public class Summarizer {
+public class Summer {
 	public int sum(int a, int b) {
 		return a == 0 ? 2 : 7;
 	}
@@ -166,10 +166,10 @@ public class Summarizer {
 				<section style="background-color:orange">
 <pre><code>//Test
 @Test
-public void shouldSummarizeNumbers() {
-	int sum = new Summarizer().sum(3, 4);
+public void shouldSumNumbers() {
+	int sum = new Summer().sum(3, 4);
 	assertThat(sum).isEqualTo(7);
-	int sum = new Summarizer().sum(0, 2);
+	int sum = new Summer().sum(0, 2);
 	assertThat(sum).isEqualTo(2);
 }
 
@@ -185,53 +185,51 @@ public class Summarizer {
 				<section>
 					<section>
 						 <h2>Let's Bowl!!</h2>
-						 <h4 class="fragment">but let's learn the rules first</h4>
+						 <h4 class="fragment">Implement rules of bowling scoring with TDD</h4>
 					</section>
 					<section>
-					 Each turn a player has max two throws, for all rounds except the last one
+						Points for each frame are the number of pins knocked down with max two rolls
+						<div class="fragment">tallied after a frame</div>
+					</section>
+					<section>
+						unless...
+					</section>
+					<section>
+						10 pins knocked down in two rolls
+						<div class="fragment">e.g. 2,8, but not 10,0</div>
+						<div class="fragment">That's a spare</div>
+					</section>
+					<section>
+						Spare frame counts as 10 + next roll pins
+						<div class="fragment">tallied after the that roll</div>
+					</section>
+					<section>
+						10 pins knocked down in a single roll
+						<div class="fragment">That's a strike</div>
+					</section>
+					<section>
+						Spare frame counts as 10 + next two roll pins
+						<div class="fragment">tallied after the those rolls</div>
+					</section>
+					<section>
+						<h3>Bonus rounds</h3>
+						<div class="fragment">Validation</div>
+					</section>
+					<section>
+					 There are exactly 10 frames per game
+					</section>
+					<section>
+					 You can knocked down at max 10 pins during a frame
 				 </section>
 				 <section>
-					 During first throw player can knock down between 0 - 10 pins
+					 except the last frame...
 				 </section>
 				 <section>
-					 During second throw player can knockout between 0 and 10 minus number of pins knocked down in previous throw
+					 for strike on first roll of the last frame you get two additional rolls
 				 </section>
 				 <section>
-					 Game's score is a sum of all frames' scores
+					 for spare on first two rolls of the last frame you get one additional roll
 				 </section>
-				 <section>
-					There are 10 rounds, called frames
-				 </section>
-				 <section>
-					Each frame's score is a sum of both throws
-				</section>
-				<section>
-					..unless all pins are knocked down
-				</section>
-				<section>
-				 If player knocks down 10 pins during first throw, score for the frame is equal to 10 + number of pins knocked down during next two throws
-				 <p class="fragment">This is called a Strike</p>
-			 </section>
-			 <section>
-			  If player knocks down remaining pins during second throw, score for the frame is equal to 10 + number of pins knocked down during next throw
-			  <p class="fragment">This is called a Spare</p>
-			 </section>
-			 <section>
-				Final round's score is a sum of both throws
-			 </section>
-			 <section>
-				 ..unless player scores a strike - player gets two additional throws and knocked down pins are counted towards frame's score
-			 </section>
-			 <section>
-			   ..or player scores a spare - player gets one additional throw and knocked down pins are counted towards frame's score
-				</section>
-			</section>
-			<section>
-				<section>
-						<h2>Excercise</h2>
-						<p class="fragment">Go back to the rules of bowling...</p>
-						<p class="fragment">...and implement them as steps in Red-Green-Refactor loop</p>
-				</section>
 				<section>
 					<h1>Have Fun!!</h1>
 				</section>
